@@ -98,9 +98,9 @@ if data:
             ''', unsafe_allow_html=True)
 
             # 解説表示（JSONに "commentary" があれば表示）
-            if "commentary" in q:
+            if "commentary" in q and q["commentary"]:
                 st.markdown("#### 💡 解説")
-                st.markdown(f'<div class="commentary-box">{q["commentary"]}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="explanation-box">{q["commentary"]}</div>', unsafe_allow_html=True)
 
             if st.button("🔄 次の問題へ"):
                 get_next_question(sub)

@@ -98,8 +98,6 @@ if data:
                 </div>
             ''', unsafe_allow_html=True)
 
-            # --- ここに配置を修正 ---
-
             # 1. 「次の問題へ」ボタンを解説の上に配置
             if st.button("🔄 次の問題へ"):
                 get_next_question(sub)

@@ -33,7 +33,7 @@ st.markdown("""
 # --- データの読み込み ---
 @st.cache_data
 def load_data():
-    json_path = "evaluated_options.json"
+    json_path = "options.json"
     if os.path.exists(json_path):
         with open(json_path, "r", encoding="utf-8") as f:
             return json.load(f)

@@ -13,17 +13,17 @@ st.markdown("""
     .custom-title { font-size: 1.5rem !important; margin-bottom: 1rem; }
     .question-text { font-size: 1.1rem !important; font-weight: 600; line-height: 1.6; color: #333333; }
     div.stButton > button { width: 100%; border-radius: 50px !important; font-weight: bold !important; }
-
-    /* 解説エリアのデザイン */
-    .commentary-box {
+    
+    .explanation-box {
         background-color: #E3F2FD;
-        padding: 1rem;
+        padding: 1.2rem;
         border-radius: 10px;
         margin: 15px 0;
         border-left: 5px solid #2196F3;
         color: #1565C0;
+        line-height: 1.6;
     }
-
+    
     .result-box { padding: 1.5rem; border-radius: 10px; text-align: center; font-size: 1.2rem; font-weight: bold; margin: 20px 0; }
     .correct { background-color: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7; }
     .incorrect { background-color: #FFEBEE; color: #C62828; border: 1px solid #EF9A9A; }
@@ -33,7 +33,8 @@ st.markdown("""
 # --- データの読み込み ---
 @st.cache_data
 def load_data():
-    json_path = "options.json"
+    # ファイル名を実際の「options.json」に変更
+    json_path = "options.json" 
     if os.path.exists(json_path):
         with open(json_path, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -97,7 +98,7 @@ if data:
                 </div>
             ''', unsafe_allow_html=True)
 
-            # 解説表示（JSONに "commentary" があれば表示）
+            # --- 解説欄の表示 (commentaryキーを使用) ---
             if "commentary" in q and q["commentary"]:
                 st.markdown("#### 💡 解説")
                 st.markdown(f'<div class="explanation-box">{q["commentary"]}</div>', unsafe_allow_html=True)
@@ -105,4 +106,4 @@ if data:
             if st.button("🔄 次の問題へ"):
                 get_next_question(sub)
 else:
-    st.error("JSONファイルが見つかりません。")
+    st.error("JSONファイルが見つかりません。ファイル名が 'options.json' であることを確認してください。")
